@@ -1,0 +1,12 @@
+{
+  "name": "spell-checker",
+  "version": "1.0.0",
+  "description": "When writing text, it is helpful to have a tool to check that you are spelling correctly.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
