@@ -1,34 +1,58 @@
 import words from "./words.json" with { type: "json" };
 
+const textInput = document.getElementById("text");
+const checkButton = document.getElementById("check");
+const addButton = document.getElementById("add-word");
+const misspelledDiv = document.getElementById("misspelled-words");
 
-const test = "Hello I am Danial"
-
-const spellCheckButton = document.getElementById("spellCheck-button")
-const displayMisspelled = document.getElementById("display-misspelled")
-
-
-
+let customWords = new Set();
 
 
-spellCheckButton.addEventListener("click",()=>{
-   spellCheck(test)
+function cleanWord(word) {
+    return word.trim().toLowerCase().replace(/[.,?!":;]/g, "");
 }
-)
 
-function spellCheck(words){
-    const misspelledContainer = []
-    const textToLowerCase = test.toLowerCase().split(' ')
-    for(let i = 0; i<= textToLowerCase.length ;i++){
-        if(!words.includes(textToLowerCase[i])){
-           misspelledContainer.push(textToLowerCase[i]) 
+
+function spellCheck() {
+    misspelledDiv.innerHTML = "";
+    let text = textInput.value;
+    if (!text) return;
+
+    let wordsArray = text.split(/\s+/);
+    let misspelled = [];
+
+    wordsArray.forEach(word => {
+        let cleaned = cleanWord(word);
+
+        if (cleaned.includes("-")) {
+            cleaned.split("-").forEach(subWord => {
+                if (!words.includes(subWord) && !customWords.has(subWord)) {
+                    misspelled.push(subWord);
+                }
+            });
+        } else {
+            if (!words.includes(cleaned) && !customWords.has(cleaned)) {
+                misspelled.push(cleaned);
+            }
+        }
+    });
+
+    if (misspelled.length > 0) {
+        misspelled.forEach(word => {
+            let div = document.createElement("div");
+            div.textContent = word;
+            misspelledDiv.appendChild(div);
+        });
     }
+}
+
+addButton.addEventListener("click", () => {
+    let newWord = prompt("Enter a word:");
+    if (newWord) {
+        customWords.add(newWord.toLowerCase());
+        spellCheck();
     }
-    displayMisspelled.innerText = `${misspelledContainer}`
-    
-}
-    
+});
 
+checkButton.addEventListener("click", spellCheck);
 
-window.onload = function() {
-   
-}
