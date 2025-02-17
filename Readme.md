@@ -1,4 +1,4 @@
-# Project: Spell Checker
+# Project: Basic English Spell Checker
 
 When writing text, it is helpful to have a tool to check that you are spelling correctly. 
 
