@@ -1,12 +1,15 @@
 {
-  "name": "spell-checker",
+  "name": "Basic English Spell Checker",
   "version": "1.0.0",
   "description": "When writing text, it is helpful to have a tool to check that you are spelling correctly.",
-  "main": "script.js",
+  "main": "spellCheck.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
