@@ -43,7 +43,7 @@ function spellCheck() {
     if (misspelled.length > 0) {
         misspelled.forEach(word => {
             let div = document.createElement("div");
-            div.textContent = word;
+            div.textContent = `${word} is misspelled`;
             misspelledDiv.appendChild(div);
         });
     }
