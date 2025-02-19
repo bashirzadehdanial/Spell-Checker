@@ -1,6 +1,6 @@
 
-import words from "./words.json" with { type: "json" };
-
+import wordsArray from "./words.json" with { type: "json" };
+const words = wordsArray.toString();
 
 const textInput = document.getElementById("text");
 const checkButton = document.getElementById("check");
@@ -29,12 +29,12 @@ function spellCheck() {
 
         if (cleaned.includes("-")) {
             cleaned.split("-").forEach(subWord => {
-                if (!words.includes(subWord) && !customWords.has(subWord)) {
+                if (!words.toLowerCase().includes(subWord) && !customWords.has(subWord)) {
                     misspelled.push(subWord);
                 }
             });
         } else {
-            if (!words.includes(cleaned) && !customWords.has(cleaned)) {
+            if (!words.toLowerCase().includes(cleaned) && !customWords.has(cleaned)) {
                 misspelled.push(cleaned);
             }
         }
